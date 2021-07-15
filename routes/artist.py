@@ -12,7 +12,7 @@ def artists_all():
 
     try:
         artists = json.loads(str(Artist.query.all()))
-    except as e:
+    except Exception as e:
         print(e)
         artists = "artist"
 
