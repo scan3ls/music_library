@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from routes import api
 from models.song import Song
 import json
+from models.db import db
 
 @api.route("/songs", methods=["GET"])
 def songs_all():

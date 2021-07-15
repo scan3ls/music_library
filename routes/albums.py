@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from routes import api
 from models.album import Album
 import json
+from models.db import db
 
 @api.route("/albums", methods=["GET"])
 def albums_all():
