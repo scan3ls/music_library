@@ -13,6 +13,7 @@ def artists_all():
     try:
         artists = json.loads(str(Artist.query.all()))
     except Exception as e:
+        db.session.rollback()
         print(e)
         artists = "artist"
 
