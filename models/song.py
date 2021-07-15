@@ -1,6 +1,7 @@
 from models.db import db
 from uuid import uuid4
 from models.album import Album
+from models.artist import Artist
 
 class Song(db.Model):
     id = db.Column(db.String(128), primary_key=True)
@@ -15,6 +16,15 @@ class Song(db.Model):
         backref=db.backref('songs', lazy=True)
     )
 
+    artist = db.Column(db.String(128))
+    artist_id = db.Column(
+        db.String(128),
+        db.ForeignKey('artist.id')
+    )
+    artist_r = db.relationship(
+        'Artist',
+        backref=db.backref('songs', lazy=True)
+    )
 
     def __init__(self, **kwargs):
         super(Song, self).__init__(**kwargs)
@@ -29,6 +39,11 @@ class Song(db.Model):
             query = Album.query.filter(Album.name == self.album).first()
             self.album_id = query.id
 
+        if self.artist:
+            query = Artist.query.filter(Artist.name == self.artist).first()
+            self.artist_id = query.id
+
+
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -38,4 +53,11 @@ class Song(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'{"*"*100}\n    Song\n\tid={self.id}\n\tname={self.name}\n\talbum={self.album}\n{"*"*100}'
+        import json
+        data = {
+            "id": self.id,
+            "name": self.name,
+            "album": self.album,
+            "artist": self.artist
+        }
+        return json.dumps(data, indent=2)

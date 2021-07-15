@@ -21,4 +21,13 @@ class Artist(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'{"*"*100}\n  Artist\n\tid={self.id}\n\tname={self.name}\nalbums={self.albums}\n{"*"*100}'
+        import json
+        albums = [album.id for album in self.albums]
+        songs = [song.id for song in self.songs]
+        data = {
+            "id": self.id,
+            "name": self.name,
+            "albums": albums,
+            "songs": songs
+        }
+        return json.dumps(data, indent=2)

@@ -5,6 +5,7 @@ from models.artist import Artist
 class Album(db.Model):
     id = db.Column(db.String(128), primary_key=True)
     name = db.Column(db.String(128))
+    cover = db.Column(db.String(128))
     artist = db.Column(db.String(128))
     artist_id = db.Column(
         db.String(128),
@@ -37,4 +38,14 @@ class Album(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'{"*"*100}\n   Album\n\tid={self.id}\n\tname={self.name}\n\tartist={self.artist}\nsongs={self.songs}\n{"*"*100}'
+        import json
+        songs = [song.id for song in self.songs]
+        data = {
+            "id": self.id,
+            "name": self.name,
+            "cover": self.cover,
+            "artist": self.artist,
+            "songs": songs
+        }
+
+        return json.dumps(data, indent=2)

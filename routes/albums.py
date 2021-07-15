@@ -1,10 +1,11 @@
 from flask import Flask, jsonify
 from routes import api
 from models.album import Album
+import json
 
 @api.route("/albums", methods=["GET"])
 def albums_all():
-    albums = Album.query.all()
+    albums = json.loads(str(Album.query.all()))
     response = jsonify({"Albums": albums})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response, 200
