@@ -10,6 +10,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
 ## Endpoints
 
 - `GET /`: Pings the database for all albums
+
       Output:
         {
           "Albums": [
@@ -28,6 +29,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
         }
 
 - `GET /albums`: Pings the database for all albums
+
       Output:
       {
         "Albums": [
@@ -46,6 +48,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
       }
 
 - `GET /artists`: Pings the database for all artists
+
       Output:
       {
         "Artists": [
@@ -66,6 +69,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
       }
 
 - `Get /songs`: Pings the database for all songs
+
       Output:
       {
         "Songs": [
