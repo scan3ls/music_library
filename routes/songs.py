@@ -19,7 +19,12 @@ def songs_all():
 
 @api.route("/songs/<song_id>", methods=["GET"])
 def song_by_id(song_id):
-    song = Song.query.filter(Song.id == song_id).first()
+    try:
+        song = Song.query.filter(Song.id == song_id).first()
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        song = "song"
 
     response = jsonify(json.loads(str(song)))
     response.headers.add("Access-Control-Allow-Origin", "*")
