@@ -16,3 +16,11 @@ def songs_all():
     response = jsonify({"Songs": songs})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response, 200
+
+@api.route("/songs/<song_id>", methods=["GET"])
+def song_by_id(song_id):
+    song = Song.query.filter(Song.id == song_id).first()
+
+    response = jsonify(json.loads(str(song)))
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response, 200
