@@ -20,7 +20,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
                 "id": "########-####-####-####-############",
                 "name": "Album Name",
                 "songs": [
-                    ########-####-####-####-############,
+                    (########-####-####-####-############, Song_Name),
                     ...
                 ]
             },
@@ -39,7 +39,7 @@ Hosted through Heroku [here](https://salty-oasis-19252.herokuapp.com/)
               "id": "########-####-####-####-############",
               "name": "Album Name",
               "songs": [
-                  ########-####-####-####-############,
+                  (########-####-####-####-############, Song_Name),
                   ...
               ]
           },
