@@ -39,7 +39,7 @@ class Album(db.Model):
 
     def __repr__(self):
         import json
-        songs = [song.id for song in self.songs]
+        songs = [(song.id, song.name) for song in self.songs]
         data = {
             "id": self.id,
             "name": self.name,
