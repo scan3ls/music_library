@@ -17,9 +17,15 @@ def albums_all():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response, 200
 
-@api.route("/albums/<name>")
-def albums_by_name(name):
-    albums = Album.query.filter(Album.name == name).first()
-    response = jsonify({"Album": album})
+@api.route("/albums/<album_id>")
+def albums_by_id(album_id):
+    try:
+        album = json.loads(str(Album.query.filter(Album.id == album_id).first()))
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        album = "album"
+
+    response = jsonify(album)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response, 200
